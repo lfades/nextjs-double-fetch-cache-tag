@@ -29,6 +29,9 @@ export async function Body({ timeout }: Props) {
 	// can't be updated once they're set because the data used in the first
 	// generation of the page never revalidates and that's the one used to set
 	// the tags.
+	//
+	// NOTE: In Vercel the behavior is different as the unstable_cache calls
+	// are being deduped, so it works like the double-fetch strategy.
 
 	const getData = unstable_cache(makeFetch, []);
 	const data = await getData();
